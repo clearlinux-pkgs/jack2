@@ -1,3 +1,7 @@
 1.9.12
+eigen-dev
+libsamplerate-dev
 libsndfile-dev
+opus-dev
 pkgconfig(alsa)
+readline-dev

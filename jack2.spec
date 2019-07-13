@@ -4,7 +4,7 @@
 #
 Name     : jack2
 Version  : 1.9.12
-Release  : 1
+Release  : 2
 URL      : https://github.com/jackaudio/jack2/releases/download/v1.9.12/jack2-1.9.12.tar.gz
 Source0  : https://github.com/jackaudio/jack2/releases/download/v1.9.12/jack2-1.9.12.tar.gz
 Summary  : JACK low-latency audio server for multi-processor machines (daemon activation)
@@ -14,9 +14,13 @@ Requires: jack2-bin = %{version}-%{release}
 Requires: jack2-lib = %{version}-%{release}
 Requires: jack2-license = %{version}-%{release}
 Requires: jack2-man = %{version}-%{release}
+BuildRequires : eigen-dev
+BuildRequires : libsamplerate-dev
 BuildRequires : libsndfile-dev
+BuildRequires : opus-dev
 BuildRequires : pkgconfig(alsa)
 BuildRequires : python-core
+BuildRequires : readline-dev
 Patch1: 0002-Makefile-quick-wrapper-for-waf.patch
 Patch2: waf-legacy.patch
 
@@ -82,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1563034022
+export SOURCE_DATE_EPOCH=1563034592
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -95,7 +99,7 @@ make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1563034022
+export SOURCE_DATE_EPOCH=1563034592
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/jack2
 cp android/NOTICE %{buildroot}/usr/share/package-licenses/jack2/android_NOTICE
@@ -107,6 +111,8 @@ cp windows/Setup/src/COPYING %{buildroot}/usr/share/package-licenses/jack2/windo
 
 %files bin
 %defattr(-,root,root,-)
+/usr/bin/alsa_in
+/usr/bin/alsa_out
 /usr/bin/jack_alias
 /usr/bin/jack_bufsize
 /usr/bin/jack_connect
@@ -127,6 +133,8 @@ cp windows/Setup/src/COPYING %{buildroot}/usr/share/package-licenses/jack2/windo
 /usr/bin/jack_midisine
 /usr/bin/jack_monitor_client
 /usr/bin/jack_multiple_metro
+/usr/bin/jack_net_master
+/usr/bin/jack_net_slave
 /usr/bin/jack_netsource
 /usr/bin/jack_rec
 /usr/bin/jack_samplerate
@@ -163,11 +171,13 @@ cp windows/Setup/src/COPYING %{buildroot}/usr/share/package-licenses/jack2/windo
 /usr/include/jack/weakjack.h
 /usr/include/jack/weakmacros.h
 /usr/lib64/libjack.so
+/usr/lib64/libjacknet.so
 /usr/lib64/libjackserver.so
 /usr/lib64/pkgconfig/jack.pc
 
 %files lib
 %defattr(-,root,root,-)
+/usr/lib64/jack/audioadapter.so
 /usr/lib64/jack/inprocess.so
 /usr/lib64/jack/jack_alsa.so
 /usr/lib64/jack/jack_alsarawmidi.so
@@ -176,10 +186,13 @@ cp windows/Setup/src/COPYING %{buildroot}/usr/share/package-licenses/jack2/windo
 /usr/lib64/jack/jack_net.so
 /usr/lib64/jack/jack_netone.so
 /usr/lib64/jack/jack_proxy.so
+/usr/lib64/jack/netadapter.so
 /usr/lib64/jack/netmanager.so
 /usr/lib64/jack/profiler.so
 /usr/lib64/libjack.so.0
 /usr/lib64/libjack.so.0.1.0
+/usr/lib64/libjacknet.so.0
+/usr/lib64/libjacknet.so.0.1.0
 /usr/lib64/libjackserver.so.0
 /usr/lib64/libjackserver.so.0.1.0
 
