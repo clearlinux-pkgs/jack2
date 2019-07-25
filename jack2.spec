@@ -4,10 +4,10 @@
 #
 Name     : jack2
 Version  : 1.9.12
-Release  : 2
+Release  : 3
 URL      : https://github.com/jackaudio/jack2/releases/download/v1.9.12/jack2-1.9.12.tar.gz
 Source0  : https://github.com/jackaudio/jack2/releases/download/v1.9.12/jack2-1.9.12.tar.gz
-Summary  : JACK low-latency audio server for multi-processor machines (daemon activation)
+Summary  : the Jack Audio Connection Kit: a low-latency synchronous callback-based media server
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
 Requires: jack2-bin = %{version}-%{release}
@@ -23,11 +23,12 @@ BuildRequires : python-core
 BuildRequires : readline-dev
 Patch1: 0002-Makefile-quick-wrapper-for-waf.patch
 Patch2: waf-legacy.patch
+Patch3: CVE-2019-13351.patch
 
 %description
-This folder contains the sources for ASIO/JACK bridge ASIO driver called "JackRouter". The included project is a Microsoft VC++ 6 one.
-It requires some files (combase.cpp, dllentry.cpp, register.cpp) that are part on the ASIO driver SDK. The produced "JackRouter.dll" file
-has to be registered in the system using the "regsvr32" tool.
+-----------------------------------------------------------
+jackdmp (aka JACK2) for Linux, MacOSX, Windows and Solaris
+-----------------------------------------------------------
 
 %package bin
 Summary: bin components for the jack2 package.
@@ -44,7 +45,6 @@ Group: Development
 Requires: jack2-lib = %{version}-%{release}
 Requires: jack2-bin = %{version}-%{release}
 Provides: jack2-devel = %{version}-%{release}
-Requires: jack2 = %{version}-%{release}
 Requires: jack2 = %{version}-%{release}
 
 %description dev
@@ -80,26 +80,27 @@ man components for the jack2 package.
 %setup -q -n jack2-1.9.12
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1563034592
+export SOURCE_DATE_EPOCH=1564074515
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1563034592
+export SOURCE_DATE_EPOCH=1564074515
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/jack2
 cp android/NOTICE %{buildroot}/usr/share/package-licenses/jack2/android_NOTICE
