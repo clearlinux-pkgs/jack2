@@ -4,7 +4,7 @@
 #
 Name     : jack2
 Version  : 1.9.13
-Release  : 4
+Release  : 5
 URL      : https://github.com/jackaudio/jack2/releases/download/v1.9.13/jack2-1.9.13.tar.gz
 Source0  : https://github.com/jackaudio/jack2/releases/download/v1.9.13/jack2-1.9.13.tar.gz
 Summary  : the Jack Audio Connection Kit: a low-latency synchronous callback-based media server
@@ -75,6 +75,7 @@ man components for the jack2 package.
 
 %prep
 %setup -q -n jack2-1.9.13
+cd %{_builddir}/jack2-1.9.13
 %patch1 -p1
 
 %build
@@ -82,20 +83,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570819447
+export SOURCE_DATE_EPOCH=1604441549
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1570819447
+export SOURCE_DATE_EPOCH=1604441549
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/jack2
 cp %{_builddir}/jack2-1.9.13/android/NOTICE %{buildroot}/usr/share/package-licenses/jack2/56775a72fbc8b1416c51326851d83c2121a92c98
