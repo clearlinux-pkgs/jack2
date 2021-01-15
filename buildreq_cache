@@ -1,4 +1,5 @@
-1.9.13
+1.9.17
+alsa-dev
 eigen-dev
 libsamplerate-dev
 libsndfile-dev

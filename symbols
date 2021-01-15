@@ -580,7 +580,7 @@ libjackserver.so.0:_ZN4Jack10JackEngine20PropertyChangeNotifyEmPKc22jack_propert
 libjackserver.so.0:_ZN4Jack10JackEngine21ComputeTotalLatenciesEv
 libjackserver.so.0:_ZN4Jack10JackEngine21GetInternalClientNameEiPc
 libjackserver.so.0:_ZN4Jack10JackEngine21NotifyPortRegistationEjb
-libjackserver.so.0:_ZN4Jack10JackEngine21PortSetDeviceMetadataEjPKc
+libjackserver.so.0:_ZN4Jack10JackEngine22PortSetDefaultMetadataEjPKc
 libjackserver.so.0:_ZN4Jack10JackEngine24ClientHasSessionCallbackEPKc
 libjackserver.so.0:_ZN4Jack10JackEngine4OpenEv
 libjackserver.so.0:_ZN4Jack10JackEngine5CloseEv
@@ -1412,6 +1412,7 @@ libjackserver.so.0:jackctl_parameter_set_value
 libjackserver.so.0:jackctl_server_add_slave
 libjackserver.so.0:jackctl_server_close
 libjackserver.so.0:jackctl_server_create
+libjackserver.so.0:jackctl_server_create2
 libjackserver.so.0:jackctl_server_destroy
 libjackserver.so.0:jackctl_server_get_drivers_list
 libjackserver.so.0:jackctl_server_get_internals_list
