@@ -1,7 +1,7 @@
-From 7ec9f1a2c1f030dad4300a748907f842bed4dee3 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Daniel Charles <daniel.charles@intel.com>
 Date: Mon, 22 Apr 2019 12:58:06 -0700
-Subject: [PATCH 2/2] Makefile: quick wrapper for waf
+Subject: [PATCH] Makefile: quick wrapper for waf
 
 Signed-off-by: Daniel Charles <daniel.charles@intel.com>
 ---
@@ -11,18 +11,15 @@ Signed-off-by: Daniel Charles <daniel.charles@intel.com>
 
 diff --git a/Makefile b/Makefile
 new file mode 100644
-index 0000000..af32891
+index 0000000..fc5d8bf
 --- /dev/null
 +++ b/Makefile
 @@ -0,0 +1,8 @@
 +.DEFAULT_GOAL: premake
 +
 +premake:
-+		$(PYTHON) ./waf configure --prefix=/usr --bindir=/usr/bin --libdir=/usr/lib64 
++		$(PYTHON) ./waf configure --prefix=/usr --bindir=/usr/bin --libdir=/usr/lib64
 +install:
 +		$(PYTHON) ./waf install $*
 +clean:
 +		$(PYTHON) ./waf clean
--- 
-2.21.0
-
