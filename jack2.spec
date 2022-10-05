@@ -4,7 +4,7 @@
 #
 Name     : jack2
 Version  : 1.9.21
-Release  : 11
+Release  : 12
 URL      : https://github.com/jackaudio/jack2/archive/v1.9.21/jack2-1.9.21.tar.gz
 Source0  : https://github.com/jackaudio/jack2/archive/v1.9.21/jack2-1.9.21.tar.gz
 Summary  : the Jack Audio Connection Kit: a low-latency synchronous callback-based media server
@@ -83,24 +83,24 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1650474959
+export SOURCE_DATE_EPOCH=1664936547
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto -fstack-protector-strong -fzero-call-used-regs=used "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1650474959
+export SOURCE_DATE_EPOCH=1664936547
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/jack2
-cp %{_builddir}/jack2-1.9.21/COPYING %{buildroot}/usr/share/package-licenses/jack2/db95910cb27890d60e596e4c622fc3eeba6693fa
-cp %{_builddir}/jack2-1.9.21/android/NOTICE %{buildroot}/usr/share/package-licenses/jack2/56775a72fbc8b1416c51326851d83c2121a92c98
+cp %{_builddir}/jack2-%{version}/COPYING %{buildroot}/usr/share/package-licenses/jack2/db95910cb27890d60e596e4c622fc3eeba6693fa || :
+cp %{_builddir}/jack2-%{version}/android/NOTICE %{buildroot}/usr/share/package-licenses/jack2/56775a72fbc8b1416c51326851d83c2121a92c98 || :
 %make_install
 
 %files
