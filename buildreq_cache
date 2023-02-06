@@ -1,7 +1,5 @@
-1.9.21
+1.9.22
 eigen-dev
 libsamplerate-dev
-libsndfile-dev
 opus-dev
 pkgconfig(alsa)
-readline-dev
