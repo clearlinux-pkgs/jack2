@@ -1,1 +1,2 @@
 0001-Makefile-quick-wrapper-for-waf.patch
+0002-Workaround-old-waflib-trying-to-use-imp.patch

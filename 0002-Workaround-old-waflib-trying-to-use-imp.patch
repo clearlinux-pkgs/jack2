@@ -1,0 +1,36 @@
+From e1d910eb87d90da5613af3d3cffc141312eb71d9 Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Thu, 7 Dec 2023 12:46:30 -0800
+Subject: [PATCH] Workaround old waflib trying to use imp
+
+Taken from
+https://github.com/electronicvisions/waf/commit/d2060dfd8af4edb5824153ff24e207b39ecd67a2
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
+---
+ waflib/Context.py | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/waflib/Context.py b/waflib/Context.py
+index 761b521..bfa6de8 100644
+--- a/waflib/Context.py
++++ b/waflib/Context.py
+@@ -6,10 +6,14 @@
+ Classes and functions enabling the command system
+ """
+ 
+-import os, re, imp, sys
++import os, re, sys
+ from waflib import Utils, Errors, Logs
+ import waflib.Node
+ 
++import types
++class imp(object):
++        new_module = lambda x: types.ModuleType(x)
++
+ # the following 3 constants are updated on each new release (do not touch)
+ HEXVERSION=0x2000c00
+ """Constant updated on new releases"""
+-- 
+2.43.0
+
